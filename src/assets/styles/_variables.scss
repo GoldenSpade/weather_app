@@ -1,0 +1,60 @@
+// ── Static SCSS variables ─────────────────────────────────
+$radius-card:   14px;
+$radius-block:  12px;
+$radius-input:  8px;
+$radius-btn:    7px;
+$radius-tab:    6px;
+$radius-badge:  4px;
+
+$transition-fast: 0.18s;
+$transition-base: 0.2s;
+
+$container-max: 1200px;
+$breakpoint-md: 800px;
+$breakpoint-sm: 480px;
+
+// ── CSS custom properties — Day theme (default) ───────────
+:root {
+  --bg-app:       #f0f4f8;
+  --bg-surface:   #ffffff;
+  --bg-muted:     #f8fafc;
+  --bg-tabs:      #f1f5f9;
+
+  --text-1:       #1a202c;
+  --text-2:       #1e3a5f;
+  --text-3:       #64748b;
+  --text-4:       #94a3b8;
+
+  --border:       #e2e8f0;
+  --shadow:       rgba(0, 0, 0, 0.08);
+  --shadow-lg:    rgba(0, 0, 0, 0.18);
+
+  --chart-grid:   rgba(0, 0, 0, 0.05);
+  --chart-tick:   #94a3b8;
+  --chart-line:   #3b82f6;
+  --chart-fill-start: rgba(59, 130, 246, 0.35);
+  --chart-fill-end:   rgba(59, 130, 246, 0);
+}
+
+// ── CSS custom properties — Night theme ───────────────────
+[data-theme="night"] {
+  --bg-app:       #0d1b2a;
+  --bg-surface:   #162032;
+  --bg-muted:     #1c2d42;
+  --bg-tabs:      #0d1b2a;
+
+  --text-1:       #e2e8f0;
+  --text-2:       #93c5fd;
+  --text-3:       #94a3b8;
+  --text-4:       #4a6380;
+
+  --border:       #2a3f5c;
+  --shadow:       rgba(0, 0, 0, 0.3);
+  --shadow-lg:    rgba(0, 0, 0, 0.5);
+
+  --chart-grid:   rgba(255, 255, 255, 0.05);
+  --chart-tick:   #4a6380;
+  --chart-line:   #60a5fa;
+  --chart-fill-start: rgba(96, 165, 250, 0.3);
+  --chart-fill-end:   rgba(96, 165, 250, 0);
+}

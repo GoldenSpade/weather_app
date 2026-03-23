@@ -1,0 +1,100 @@
+@use '../variables' as *;
+
+.app-header {
+  background: #1e3a5f;
+  color: #fff;
+  box-shadow: 0 2px 8px var(--shadow-lg);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+
+  &__inner {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    height: 60px;
+  }
+
+  &__logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+
+    &-icon { font-size: 1.5rem; }
+
+    &-text { /* hidden on mobile — see breakpoint below */ }
+  }
+
+  &__nav {
+    display: flex;
+    gap: 4px;
+    flex: 1;
+
+    &-link {
+      padding: 6px 18px;
+      border-radius: $radius-tab;
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: background $transition-fast, color $transition-fast;
+
+      &:hover,
+      &--active {
+        background: rgba(255, 255, 255, 0.15);
+        color: #fff;
+      }
+    }
+  }
+
+  &__lang {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-left: auto;
+
+    &-btn {
+      padding: 4px 10px;
+      border-radius: $radius-badge;
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 0.82rem;
+      font-weight: 600;
+      transition: background $transition-fast, color $transition-fast;
+
+      &:hover,
+      &--active {
+        background: rgba(255, 255, 255, 0.2);
+        color: #fff;
+      }
+    }
+
+    &-sep { color: rgba(255, 255, 255, 0.3); }
+  }
+
+  &__theme-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: $radius-badge;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.7);
+    transition: background $transition-fast, color $transition-fast;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.15);
+      color: #fff;
+    }
+  }
+}
+
+@media (max-width: $breakpoint-sm) {
+  .app-header {
+    &__logo-text { display: none; }
+    &__inner     { gap: 12px; }
+    &__nav-link  { padding: 6px 12px; font-size: 0.88rem; }
+  }
+}

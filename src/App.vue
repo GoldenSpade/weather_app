@@ -13,16 +13,3 @@ import AppHeader from './components/AppHeader.vue'
     </main>
   </div>
 </template>
-
-<style scoped>
-.app {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
-
-.app__main {
-  flex: 1;
-  padding: 24px 0;
-}
-</style>

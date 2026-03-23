@@ -1,0 +1,137 @@
+@use '../variables' as *;
+
+// ── Day card ───────────────────────────────────────────────
+.weather-card {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  &__main {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  &__icon-wrap { flex-shrink: 0; }
+
+  &__icon {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+  }
+
+  &__temp-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  &__temp {
+    font-size: 2.6rem;
+    font-weight: 700;
+    color: var(--text-2);
+    line-height: 1;
+  }
+
+  &__description {
+    font-size: 0.95rem;
+    color: var(--text-3);
+    text-transform: capitalize;
+  }
+
+  &__feels {
+    font-size: 0.85rem;
+    color: var(--text-4);
+  }
+
+  &__details {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  &__detail {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--bg-muted);
+    border-radius: $radius-input;
+    padding: 8px 10px;
+    transition: background $transition-base;
+
+    &-icon  { font-size: 1rem; flex-shrink: 0; }
+    &-label { font-size: 0.78rem; color: var(--text-4); flex: 1; min-width: 0; }
+    &-value { font-size: 0.85rem; font-weight: 600; color: var(--text-2); white-space: nowrap; }
+  }
+}
+
+// ── Week view ──────────────────────────────────────────────
+.weather-week {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 8px;
+
+  &__day {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    background: var(--bg-muted);
+    border-radius: 10px;
+    padding: 12px 6px;
+    text-align: center;
+    transition: background $transition-base;
+  }
+
+  &__day-name {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--text-2);
+    text-transform: capitalize;
+  }
+
+  &__day-date {
+    font-size: 0.75rem;
+    color: var(--text-4);
+  }
+
+  &__icon {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+  }
+
+  &__temp {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-2);
+  }
+
+  &__range {
+    font-size: 0.75rem;
+    color: var(--text-3);
+  }
+
+  &__desc {
+    font-size: 0.72rem;
+    color: var(--text-4);
+    text-transform: capitalize;
+    text-align: center;
+  }
+}
+
+@media (max-width: 520px) {
+  .weather-card__details {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: $breakpoint-sm) {
+  .weather-week {
+    gap: 4px;
+
+    &__day   { padding: 8px 4px; }
+    &__icon  { width: 36px; height: 36px; }
+    &__desc  { display: none; }
+  }
+}

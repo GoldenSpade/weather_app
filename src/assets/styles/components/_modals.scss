@@ -1,0 +1,105 @@
+@use '../variables' as *;
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 16px;
+}
+
+// ── Confirm modal ──────────────────────────────────────────
+.modal {
+  background: var(--bg-surface);
+  border-radius: $radius-block;
+  padding: 28px 24px 20px;
+  width: 100%;
+  max-width: 420px;
+  box-shadow: 0 8px 32px var(--shadow-lg);
+  transition: background $transition-base;
+
+  &__title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-1);
+    margin-bottom: 10px;
+  }
+
+  &__message {
+    font-size: 0.93rem;
+    color: var(--text-3);
+    line-height: 1.5;
+    margin-bottom: 24px;
+  }
+
+  &__actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+  }
+
+  &__btn {
+    padding: 8px 20px;
+    border-radius: $radius-btn;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: background $transition-fast;
+
+    &--cancel {
+      background: var(--bg-muted);
+      color: var(--text-3);
+      &:hover { background: var(--border); }
+    }
+
+    &--confirm {
+      background: #ef4444;
+      color: #fff;
+      &:hover { background: #dc2626; }
+    }
+  }
+}
+
+// ── Favorites limit modal ──────────────────────────────────
+.favorites-limit-modal {
+  background: var(--bg-surface);
+  border-radius: $radius-block;
+  padding: 28px 24px 20px;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 8px 32px var(--shadow-lg);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  transition: background $transition-base;
+
+  &__icon   { font-size: 2.2rem; }
+
+  &__title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text-1);
+  }
+
+  &__message {
+    font-size: 0.92rem;
+    color: var(--text-3);
+    line-height: 1.5;
+    margin-bottom: 8px;
+  }
+
+  &__btn {
+    background: #1e3a5f;
+    color: #fff;
+    padding: 8px 28px;
+    border-radius: $radius-btn;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: background $transition-fast;
+    &:hover { background: #2d5282; }
+  }
+}
