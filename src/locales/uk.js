@@ -3,6 +3,8 @@ export default {
     home: 'Головна',
     favorites: 'Вибране',
     title: 'Погода',
+    pageTitleHome: 'Погода — Поточна погода та прогноз',
+    pageTitleFavorites: 'Погода — Вибрані міста',
   },
   search: {
     placeholder: 'Введіть назву міста...',

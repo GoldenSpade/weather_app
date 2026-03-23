@@ -1,8 +1,11 @@
 <script setup>
+import { ref } from 'vue'
 import { useFavoritesStore } from '../stores/favorites'
 import WeatherBlock from '../components/WeatherBlock.vue'
 import FavoritesLimitModal from '../components/FavoritesLimitModal.vue'
-import { ref } from 'vue'
+import { usePageTitle } from '../composables/usePageTitle'
+
+usePageTitle('nav.pageTitleFavorites')
 
 const favoritesStore = useFavoritesStore()
 const favLimitCity = ref(null)

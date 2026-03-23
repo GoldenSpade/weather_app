@@ -3,6 +3,8 @@ export default {
     home: 'Home',
     favorites: 'Favorites',
     title: 'Weather App',
+    pageTitleHome: 'Weather App — Current weather & forecast',
+    pageTitleFavorites: 'Weather App — Favorite cities',
   },
   search: {
     placeholder: 'Enter city name...',

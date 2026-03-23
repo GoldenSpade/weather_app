@@ -4,8 +4,10 @@ import { useI18n } from 'vue-i18n'
 import WeatherBlock from '../components/WeatherBlock.vue'
 import FavoritesLimitModal from '../components/FavoritesLimitModal.vue'
 import { useWeatherApi } from '../composables/useWeatherApi'
+import { usePageTitle } from '../composables/usePageTitle'
 
 const { t } = useI18n()
+usePageTitle('nav.pageTitleHome')
 const { getCityByIp } = useWeatherApi()
 
 const MAX_BLOCKS = 5

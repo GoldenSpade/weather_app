@@ -1,6 +1,6 @@
 import { createI18n } from 'vue-i18n'
-import en from './locales/en'
-import uk from './locales/uk'
+import en from './en'
+import uk from './uk'
 
 const savedLang = localStorage.getItem('weather_lang') || 'en'
 
