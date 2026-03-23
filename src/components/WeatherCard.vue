@@ -282,6 +282,12 @@ const weekDays = computed(() => {
   text-align: center;
 }
 
+@media (max-width: 520px) {
+  .weather-card__details {
+    grid-template-columns: 1fr;
+  }
+}
+
 @media (max-width: 480px) {
   .weather-week {
     grid-template-columns: repeat(5, 1fr);

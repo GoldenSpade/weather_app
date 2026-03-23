@@ -140,5 +140,7 @@ watch([() => props.viewMode, () => props.forecast, locale], createChart)
 .weather-chart {
   width: 100%;
   height: 200px;
+  overflow: hidden;
+  min-width: 0;
 }
 </style>

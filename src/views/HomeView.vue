@@ -41,7 +41,7 @@ function onCityChanged(id, city) {
 
 <template>
   <div class="home">
-    <div class="home__blocks">
+    <div class="home__grid">
       <WeatherBlock
         v-for="block in blocks"
         :key="block.id"
@@ -51,16 +51,22 @@ function onCityChanged(id, city) {
         @favorites-limit="onFavoritesLimit"
         @city-changed="onCityChanged(block.id, $event)"
       />
-    </div>
 
-    <button
-      v-if="blocks.length < MAX_BLOCKS"
-      class="home__add-btn"
-      @click="addBlock"
-    >
-      <span class="home__add-btn-icon">+</span>
-      {{ $t('actions.addBlock') }}
-    </button>
+      <button
+        v-if="blocks.length < MAX_BLOCKS"
+        class="home__add-card"
+        :title="$t('actions.addBlock')"
+        @click="addBlock"
+      >
+        <span class="home__add-card-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <line x1="12" y1="5" x2="12" y2="19" />
+            <line x1="5" y1="12" x2="19" y2="12" />
+          </svg>
+        </span>
+        <span class="home__add-card-label">{{ $t('actions.addBlock') }}</span>
+      </button>
+    </div>
 
     <FavoritesLimitModal
       v-if="favLimitCity"
@@ -71,38 +77,65 @@ function onCityChanged(id, city) {
 </template>
 
 <style scoped>
-.home__blocks {
+.home__grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
   gap: 20px;
-  margin-bottom: 24px;
+  align-items: stretch;
 }
 
-.home__add-btn {
+@media (max-width: 800px) {
+  .home__grid {
+    grid-template-columns: 1fr;
+    align-items: start;
+  }
+}
+
+.home__add-card {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 8px;
-  padding: 12px 24px;
+  justify-content: center;
+  gap: 12px;
   background: #fff;
   border: 2px dashed #cbd5e1;
-  border-radius: 12px;
-  color: #64748b;
-  font-size: 0.95rem;
-  font-weight: 600;
+  border-radius: 14px;
+  color: #94a3b8;
+  transition: border-color 0.2s, color 0.2s, background 0.2s, box-shadow 0.2s;
   width: 100%;
-  justify-content: center;
-  transition: border-color 0.18s, color 0.18s, background 0.18s;
+  min-height: 120px;
 }
 
-.home__add-btn:hover {
+@media (max-width: 800px) {
+  .home__add-card {
+    min-height: 100px;
+  }
+
+  .home__add-card-label {
+    display: none;
+  }
+}
+
+.home__add-card:hover {
   border-color: #3b82f6;
   color: #3b82f6;
   background: #eff6ff;
+  box-shadow: 0 2px 12px rgba(59, 130, 246, 0.1);
 }
 
-.home__add-btn-icon {
-  font-size: 1.3rem;
-  font-weight: 400;
-  line-height: 1;
+.home__add-card-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 2px dashed currentColor;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.home__add-card-label {
+  font-size: 0.9rem;
+  font-weight: 600;
 }
 </style>
