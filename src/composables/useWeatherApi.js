@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const API_KEY = 'a660c010d79e0d58a3e25bc36a2eaa2b'
+const API_KEY = import.meta.env.VITE_OWM_API_KEY
 const BASE_URL = 'https://api.openweathermap.org/data/2.5'
 const GEO_URL = 'https://api.openweathermap.org/geo/1.0'
 
@@ -36,14 +36,16 @@ export function useWeatherApi() {
 
   async function getCityByIp() {
     try {
-      const { data } = await axios.get('https://ipapi.co/json/')
+      const { data } = await axios.get('https://ipinfo.io/json', { timeout: 5000 })
+      if (!data.city || !data.loc) return null
+      const [lat, lon] = data.loc.split(',').map(Number)
       return {
         name: data.city,
         nameEn: data.city,
-        country: data.country_code,
-        lat: data.latitude,
-        lon: data.longitude,
-        label: `${data.city}, ${data.country_code}`,
+        country: data.country,
+        lat,
+        lon,
+        label: `${data.city}, ${data.country}`,
       }
     } catch {
       return null
