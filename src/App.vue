@@ -1,14 +1,9 @@
 <script setup>
 import { RouterLink, RouterView, useRoute } from 'vue-router'
-import { useSettingsStore } from './stores/settings'
+import { useLang } from './composables/useLang'
 
-const settings = useSettingsStore()
 const route = useRoute()
-
-const t = {
-  en: { home: 'Home', favorites: 'Favorites', title: 'Weather App' },
-  uk: { home: 'Головна', favorites: 'Вибране', title: 'Погода' },
-}
+const { locale, setLang } = useLang()
 </script>
 
 <template>
@@ -17,30 +12,22 @@ const t = {
       <div class="container header-inner">
         <div class="logo">
           <span class="logo-icon">⛅</span>
-          <span class="logo-text">{{ t[settings.lang].title }}</span>
+          <span class="logo-text">{{ $t('nav.title') }}</span>
         </div>
 
         <nav class="main-nav">
           <RouterLink to="/" class="nav-link" :class="{ active: route.path === '/' }">
-            {{ t[settings.lang].home }}
+            {{ $t('nav.home') }}
           </RouterLink>
           <RouterLink to="/favorites" class="nav-link" :class="{ active: route.path === '/favorites' }">
-            {{ t[settings.lang].favorites }}
+            {{ $t('nav.favorites') }}
           </RouterLink>
         </nav>
 
         <div class="lang-switcher">
-          <button
-            class="lang-btn"
-            :class="{ active: settings.lang === 'en' }"
-            @click="settings.setLang('en')"
-          >EN</button>
+          <button class="lang-btn" :class="{ active: locale === 'en' }" @click="setLang('en')">EN</button>
           <span class="lang-sep">|</span>
-          <button
-            class="lang-btn"
-            :class="{ active: settings.lang === 'uk' }"
-            @click="settings.setLang('uk')"
-          >UK</button>
+          <button class="lang-btn" :class="{ active: locale === 'uk' }" @click="setLang('uk')">UK</button>
         </div>
       </div>
     </header>
@@ -134,7 +121,6 @@ const t = {
 
 .lang-sep {
   color: rgba(255,255,255,0.3);
-  font-size: 0.9rem;
 }
 
 .app-main {
@@ -143,15 +129,8 @@ const t = {
 }
 
 @media (max-width: 480px) {
-  .logo-text {
-    display: none;
-  }
-  .header-inner {
-    gap: 12px;
-  }
-  .nav-link {
-    padding: 6px 12px;
-    font-size: 0.88rem;
-  }
+  .logo-text { display: none; }
+  .header-inner { gap: 12px; }
+  .nav-link { padding: 6px 12px; font-size: 0.88rem; }
 }
 </style>
