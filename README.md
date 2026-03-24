@@ -29,7 +29,7 @@ A responsive weather application built with Vue 3 that provides real-time weathe
 | Framework | Vue 3 (Composition API, `<script setup>`) |
 | Build tool | Vite |
 | State management | Pinia |
-| Routing | Vue Router 4 |
+| Routing | Vue Router 5 |
 | Internationalization | vue-i18n v11 |
 | HTTP client | axios |
 | Charts | Chart.js (tree-shaken direct import) |
