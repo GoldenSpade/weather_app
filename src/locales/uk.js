@@ -40,6 +40,8 @@ export default {
     favoritesLimit: 'Досягнуто ліміт вибраного',
     favoritesLimitText: 'Для додавання видаліть місто "{city}" — максимум 5 вибраних.',
     ok: 'ОК',
+    confirmRemoveFav: 'Видалити з вибраного?',
+    confirmRemoveFavText: 'Ви впевнені, що хочете видалити {city} з вибраного?',
   },
   chart: {
     temperature: 'Температура, °C',

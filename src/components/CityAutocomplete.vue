@@ -114,7 +114,7 @@ function onBlur() {
       </li>
     </ul>
 
-    <p v-if="!isLoading && query.length >= 2 && isOpen === false && results.length === 0" class="city-autocomplete__no-results">
+    <p v-if="!isLoading && query.length >= 2 && isOpen === false && results.length === 0 && !modelValue" class="city-autocomplete__no-results">
       {{ $t('search.noResults') }}
     </p>
   </div>

@@ -26,6 +26,7 @@ const forecast = ref(null)
 const isLoading = ref(false)
 const error = ref(null)
 const showDeleteModal = ref(false)
+const showUnfavoriteModal = ref(false)
 
 async function loadWeather(selectedCity) {
   isLoading.value = true
@@ -66,11 +67,16 @@ watch(locale, () => {
 function toggleFavorite() {
   if (!city.value) return
   if (favoritesStore.isFavorite(city.value.name)) {
-    favoritesStore.remove(city.value.name)
+    showUnfavoriteModal.value = true
   } else {
     const added = favoritesStore.add(city.value)
     if (!added) emit('favorites-limit', city.value)
   }
+}
+
+function confirmRemoveFavorite() {
+  favoritesStore.remove(city.value.name)
+  showUnfavoriteModal.value = false
 }
 
 function confirmDelete() {
@@ -156,6 +162,16 @@ if (props.initialCity) {
         />
       </template>
     </div>
+
+    <ConfirmModal
+      v-if="showUnfavoriteModal"
+      :title="$t('modal.confirmRemoveFav')"
+      :message="$t('modal.confirmRemoveFavText', { city: city?.name || '' })"
+      :confirm-label="$t('modal.confirm')"
+      :cancel-label="$t('modal.cancel')"
+      @confirm="confirmRemoveFavorite"
+      @cancel="showUnfavoriteModal = false"
+    />
 
     <ConfirmModal
       v-if="showDeleteModal"

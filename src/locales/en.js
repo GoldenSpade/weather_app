@@ -40,6 +40,8 @@ export default {
     favoritesLimit: 'Favorites limit reached',
     favoritesLimitText: 'To add a new city, please remove "{city}" — maximum 5 favorites allowed.',
     ok: 'OK',
+    confirmRemoveFav: 'Remove from favorites?',
+    confirmRemoveFavText: 'Are you sure you want to remove {city} from favorites?',
   },
   chart: {
     temperature: 'Temperature, °C',

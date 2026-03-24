@@ -3,7 +3,7 @@
 .modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.45);
+  background: var(--overlay);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -55,9 +55,9 @@
     }
 
     &--confirm {
-      background: #ef4444;
-      color: #fff;
-      &:hover { background: #dc2626; }
+      background: var(--danger);
+      color: var(--text-white);
+      &:hover { background: var(--danger-hover); }
     }
   }
 }
@@ -93,13 +93,13 @@
   }
 
   &__btn {
-    background: #1e3a5f;
-    color: #fff;
+    background: var(--color-brand);
+    color: var(--text-white);
     padding: 8px 28px;
     border-radius: $radius-btn;
     font-size: 0.9rem;
     font-weight: 600;
     transition: background $transition-fast;
-    &:hover { background: #2d5282; }
+    &:hover { background: var(--color-brand-hover); }
   }
 }
