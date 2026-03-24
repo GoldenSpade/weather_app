@@ -1,9 +1,11 @@
 <script setup>
 import { RouterLink, useRoute } from 'vue-router'
 import { useLang } from '../composables/useLang'
+import { useThemeStore } from '../stores/theme'
 
 const route = useRoute()
 const { locale, setLang } = useLang()
+const themeStore = useThemeStore()
 </script>
 
 <template>
@@ -31,18 +33,28 @@ const { locale, setLang } = useLang()
         </RouterLink>
       </nav>
 
-      <div class="app-header__lang">
+      <div class="app-header__controls">
         <button
-          class="app-header__lang-btn"
-          :class="{ 'app-header__lang-btn--active': locale === 'en' }"
-          @click="setLang('en')"
-        >EN</button>
-        <span class="app-header__lang-sep">|</span>
-        <button
-          class="app-header__lang-btn"
-          :class="{ 'app-header__lang-btn--active': locale === 'uk' }"
-          @click="setLang('uk')"
-        >UK</button>
+          class="app-header__theme-btn"
+          :title="themeStore.isDark ? $t('theme.toDay') : $t('theme.toNight')"
+          @click="themeStore.toggle()"
+        >
+          {{ themeStore.isDark ? '☀️' : '🌙' }}
+        </button>
+
+        <div class="app-header__lang">
+          <button
+            class="app-header__lang-btn"
+            :class="{ 'app-header__lang-btn--active': locale === 'en' }"
+            @click="setLang('en')"
+          >EN</button>
+          <span class="app-header__lang-sep">|</span>
+          <button
+            class="app-header__lang-btn"
+            :class="{ 'app-header__lang-btn--active': locale === 'uk' }"
+            @click="setLang('uk')"
+          >UK</button>
+        </div>
       </div>
     </div>
   </header>

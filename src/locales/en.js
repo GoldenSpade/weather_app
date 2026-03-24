@@ -48,6 +48,10 @@ export default {
     empty: 'No favorite cities yet. Add them from the Home tab.',
     title: 'Favorite Cities',
   },
+  theme: {
+    toNight: 'Switch to night mode',
+    toDay: 'Switch to day mode',
+  },
   errors: {
     fetchFailed: 'Failed to load weather data',
     cityNotFound: 'City not found',

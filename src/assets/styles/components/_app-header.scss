@@ -49,11 +49,17 @@
     }
   }
 
+  &__controls {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-left: auto;
+  }
+
   &__lang {
     display: flex;
     align-items: center;
     gap: 4px;
-    margin-left: auto;
 
     &-btn {
       padding: 4px 10px;

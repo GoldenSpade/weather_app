@@ -1,6 +1,7 @@
 <script setup>
 import { ref, onMounted, onBeforeUnmount, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
+import { useThemeStore } from '../stores/theme'
 import {
   Chart,
   LineElement,
@@ -20,8 +21,13 @@ const props = defineProps({
 })
 
 const { t, locale } = useI18n()
+const themeStore = useThemeStore()
 const canvasRef = ref(null)
 let chartInstance = null
+
+function getCssVar(name) {
+  return getComputedStyle(document.documentElement).getPropertyValue(name).trim()
+}
 
 function getTodayItems() {
   const todayStr = new Date().toISOString().split('T')[0]
@@ -55,12 +61,11 @@ function buildChartData() {
       labels: items.map(i => i.dt_txt.split(' ')[1].slice(0, 5)),
       data: items.map(i => +i.main.temp.toFixed(1)),
     }
-  } else {
-    const items = getWeekItems()
-    return {
-      labels: items.map(i => i.label),
-      data: items.map(i => i.avgTemp),
-    }
+  }
+  const items = getWeekItems()
+  return {
+    labels: items.map(i => i.label),
+    data: items.map(i => i.avgTemp),
   }
 }
 
@@ -69,15 +74,20 @@ function createChart() {
     chartInstance.destroy()
     chartInstance = null
   }
-
   if (!canvasRef.value) return
 
   const { labels, data } = buildChartData()
   const ctx = canvasRef.value.getContext('2d')
 
+  const lineColor   = getCssVar('--chart-line')
+  const fillStart   = getCssVar('--chart-fill-start')
+  const fillEnd     = getCssVar('--chart-fill-end')
+  const gridColor   = getCssVar('--chart-grid')
+  const tickColor   = getCssVar('--chart-tick')
+
   const gradient = ctx.createLinearGradient(0, 0, 0, 200)
-  gradient.addColorStop(0, 'rgba(59, 130, 246, 0.35)')
-  gradient.addColorStop(1, 'rgba(59, 130, 246, 0)')
+  gradient.addColorStop(0, fillStart)
+  gradient.addColorStop(1, fillEnd)
 
   chartInstance = new Chart(ctx, {
     type: 'line',
@@ -86,9 +96,9 @@ function createChart() {
       datasets: [{
         label: t('chart.temperature'),
         data,
-        borderColor: '#3b82f6',
+        borderColor: lineColor,
         borderWidth: 2.5,
-        pointBackgroundColor: '#3b82f6',
+        pointBackgroundColor: lineColor,
         pointRadius: 4,
         pointHoverRadius: 6,
         backgroundColor: gradient,
@@ -109,13 +119,13 @@ function createChart() {
       },
       scales: {
         x: {
-          grid: { color: 'rgba(0,0,0,0.05)' },
-          ticks: { color: '#94a3b8', font: { size: 12 } },
+          grid: { color: gridColor },
+          ticks: { color: tickColor, font: { size: 12 } },
         },
         y: {
-          grid: { color: 'rgba(0,0,0,0.05)' },
+          grid: { color: gridColor },
           ticks: {
-            color: '#94a3b8',
+            color: tickColor,
             font: { size: 12 },
             callback: (v) => `${v}°`,
           },
@@ -127,7 +137,7 @@ function createChart() {
 
 onMounted(createChart)
 onBeforeUnmount(() => { if (chartInstance) chartInstance.destroy() })
-watch([() => props.viewMode, () => props.forecast, locale], createChart)
+watch([() => props.viewMode, () => props.forecast, locale, () => themeStore.isDark], createChart)
 </script>
 
 <template>
